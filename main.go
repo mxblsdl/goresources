@@ -8,6 +8,8 @@ import (
 	"image/png"
 	"time"
 
+	"github.com/mxblsdl/goresources/extras"
+
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/app"
 	"fyne.io/fyne/v2/container"
@@ -21,6 +23,8 @@ import (
 func main() {
 	// Create a new application
 	myApp := app.NewWithID("999")
+
+	extras.CreateIcon()
 
 	// Create a simple icon programmatically
 	icon := createSimpleIcon()
@@ -77,6 +81,8 @@ func main() {
 		cpuItem := fyne.NewMenuItem("CPU: --", nil)
 		cpuItem.Disabled = true
 
+		sep := fyne.NewMenuItemSeparator()
+
 		memItem := fyne.NewMenuItem("Memory: --", nil)
 		memItem.Disabled = true
 
@@ -88,7 +94,7 @@ func main() {
 			myApp.Quit()
 		})
 
-		menu.Items = []*fyne.MenuItem{cpuItem, memItem, showItem, quitItem}
+		menu.Items = []*fyne.MenuItem{cpuItem, memItem, sep, showItem, quitItem}
 
 		// Set up the system tray
 		desk.SetSystemTrayMenu(menu)
